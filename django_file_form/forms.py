@@ -3,7 +3,7 @@ import uuid
 
 import six
 
-from django.forms import FileField, ClearableFileInput, CharField, HiddenInput
+from django.forms import FileField, FileInput, CharField, HiddenInput
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 from django.core import validators
@@ -64,7 +64,7 @@ class FileFormMixin(object):
         self.initial[field_name].append(existing_file)
 
 
-class UploadWidget(ClearableFileInput):
+class UploadWidget(FileInput):
     def render(self, name, value, attrs=None):
         def get_file_value(f):
             if getattr(f, 'is_existing', False) or hasattr(f, 'file_id'):
